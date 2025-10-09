@@ -1,4 +1,4 @@
-# ibt-maven
+# Airfluke-maven
 
 - [ ] Clone repository - https://github.com/IBT-learning/ibt-maven
 - [ ] Create a new branch : feature-**yourname**
