@@ -6,7 +6,7 @@
 
   <groupId>com.ibt.app</groupId>
   <artifactId>ibt-maven</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-SNAPSHOTS</version>
 
   <name>surafel</name>
   <!-- FIXME change it to the project's website -->
@@ -35,9 +35,9 @@
       <url>https://trialnsvt9e.jfrog.io/artifactory/learning-devops-libs-release</url>
     </repository>
     <snapshotRepository>
-      <id>snapshot</id>
-      <name>trialnsvt9e-learning-devops-libs-release-releases</name>
-      <url>https://trialnsvt9e.jfrog.io/artifactory/learning-devops-libs-release</url>
+      <id>snapshots</id>
+      <name>trialnsvt9e-learning-devops-libs-snapshot-snapshots</name>
+      <url>https://trialnsvt9e.jfrog.io/artifactory/learning-devops-libs-snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
