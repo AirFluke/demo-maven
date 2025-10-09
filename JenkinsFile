@@ -8,15 +8,15 @@ pipeline {
             }
         }
 
-        stage('Hello') {
+        stage('Hi') {
             steps {
-                echo 'Hello World'
+                echo 'Hi'
             }
         }
 
-        stage('Hello') {
+        stage('Hey') {
             steps {
-                echo 'Hello World'
+                echo 'Hey there'
             }
         }
     }
