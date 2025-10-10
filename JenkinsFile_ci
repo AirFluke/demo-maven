@@ -31,6 +31,15 @@ agent any
                 }
             }
         }
+        stage('SonarQube Analysis') {
+            environment{
+                sonarScan = tool "sonar-scanner"
+            }
+            withSonarQubeEnv(credentialsId: 'sonar-jenkins') {
+                bat "$sonarScan/bin/sonar-scanner"
+            }
+
+        }
     }
 
 }
