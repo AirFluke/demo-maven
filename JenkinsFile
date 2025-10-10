@@ -29,5 +29,10 @@ pipeline {
                 bat "dir"
             }
         }
+        stage('Testing Hooks') {
+            steps {
+                echo 'Hook Tested Sucess there'
+            }
+        }
     }
 }
