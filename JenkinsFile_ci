@@ -1,0 +1,26 @@
+pipeline{
+agent any
+
+    stages{
+        stage("Git Checkout"){
+            checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], gitTool: 'Default', userRemoteConfigs: [[credentialsId: 'git_login', url: 'https://github.com/AirFluke/demo-maven.git']])
+        }
+
+        stage("Validate"){
+            withMaven(maven: 'Maven 3.9') {
+                bat "mvn validate"
+            }
+        }
+        stage("compile"){
+            withMaven(maven: 'Maven 3.9', traceability: true) {
+                bat "mvn compile"
+            }
+        }
+        stage("test"){
+            withMaven(maven: 'Maven 3.9', traceability: true) {
+                bat "mvn test"
+            }
+        }
+    }
+
+}
