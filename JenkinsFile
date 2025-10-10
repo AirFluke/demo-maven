@@ -24,8 +24,8 @@ pipeline {
         }
         stage("Git checkout"){
             steps{
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/%BRANCH_NAME%']], extensions: [], gitTool: 'Default', userRemoteConfigs: [[credentialsId: 'git_login', url: 'https://github.com/AirFluke/demo-maven.git']])
-                bat "echo %Branch_Name%"
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/$BRANCH_NAME']], extensions: [], gitTool: 'Default', userRemoteConfigs: [[credentialsId: 'git_login', url: 'https://github.com/AirFluke/demo-maven.git']])
+                bat "echo $Branch_Name"
                 bat "dir"
             }
         }
