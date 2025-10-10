@@ -48,4 +48,10 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            emailext body: '', recipientProviders: [requestor()], subject: 'Status Of Build', to: 'slayerking6655@gmail.com'
+            echo "Post Build"
+        }
+    }
 }
