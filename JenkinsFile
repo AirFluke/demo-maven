@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Testing Hooks') {
             steps {
-                echo 'Hook Tested Sucess there'
+                echo 'Hook Tested Suucess there'
             }
         }
     }
