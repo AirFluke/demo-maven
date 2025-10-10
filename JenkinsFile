@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Enter Your Branch Name')
+        choice(name: 'Branch_Name', choices: ['one', 'two', 'three'], description: 'Choose Your branch')
+    }
     stages {
         stage('Hello') {
             steps {
@@ -21,7 +24,8 @@ pipeline {
         }
         stage("Git checkout"){
             steps{
-                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], gitTool: 'Default', userRemoteConfigs: [[credentialsId: 'git_login', url: 'https://github.com/AirFluke/demo-maven.git']])
+                checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/BRANCH_NAME']], extensions: [], gitTool: 'Default', userRemoteConfigs: [[credentialsId: 'git_login', url: 'https://github.com/AirFluke/demo-maven.git']])
+                echo "Branch_Name"
                 bat "dir"
             }
         }
