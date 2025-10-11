@@ -42,6 +42,14 @@ agent any
             }
 
         }
+        stage("package"){
+            steps{
+                withMaven(maven: 'Maven 3.9') {
+                    bat "mvn package"
+                }
+            }
+
+        }
     }
 
 }
