@@ -37,7 +37,7 @@ agent any
             }
             steps{
                 withSonarQubeEnv('Airfluke-Sonarqube') {
-                    bat "\"${sonarScan}\\bin\\sonar-scanner.bat\" -X"
+                    bat "\"${sonarScan}\\bin\\sonar-scanner.bat\""
                 }
             }
 
