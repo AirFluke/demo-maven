@@ -50,16 +50,7 @@ agent any
             }
 
         }
-        stage('Dependency Check -Vulenerability Scans ') {
-            steps {
-                dependencyCheck additionalArguments: '''
-                    -o "./"
-                    -s "./"
-                    -f "ALL"
-                    --prettyprint ''' , odcInstallation: "dependency-check"
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+
         stage('Deploy to Artifactory') {
             steps {
                 configFileProvider([configFile(fileId: 'MySettings', variable: 'MAVEN_SETTINGS')]) {
