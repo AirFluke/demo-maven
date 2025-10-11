@@ -60,6 +60,18 @@ agent any
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
+        stage("deploy-to-artifactory"){
+            steps{
+                withCredentials([file(credentialsId: 'maven-settings-xml-file', variable: 'setttings-xml')]) {
+                     withMaven(maven: 'Maven 3.9') {
+                        bat "mvn deploy -s $setttings-xml"
+                     }
+            }
+        }
+
+
+        }
+
     }
 
 }
