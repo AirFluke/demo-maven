@@ -53,7 +53,7 @@ agent any
 
         stage('Deploy to Artifactory') {
             steps {
-                configFileProvider([configFile(fileId: 'MySettings', variable: 'MAVEN_SETTINGS')]) {
+                configFileProvider([configFile(fileId: '2f82de63-6117-45d8-a06c-7f9c93c76a5c', variable: 'MAVEN_SETTINGS')]) {
                     withMaven(
                         maven: 'Maven 3.9',
                         mavenSettingsFilePath: "${MAVEN_SETTINGS}"
