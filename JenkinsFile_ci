@@ -33,7 +33,7 @@ agent any
         }
         stage('SonarQube Analysis') {
             environment{
-                sonarScan = tool "sonar-scanner"
+                sonarScan = tool "airfluke-scanner"
             }
             steps{
                withSonarQubeEnv('Airfluke-Sonarqube') {
