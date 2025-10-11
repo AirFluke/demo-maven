@@ -33,11 +33,11 @@ agent any
         }
         stage('SonarQube Analysis') {
             environment{
-                sonarScan = tool "sonar-scanner"
+                sonarScan = tool "airfluke-scanner"
             }
             steps{
                 withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'Airfluke-Sonarqube') {
-                    bat "${scannerHome}\\bin\\sonar-scanner.bat -Dsonar.projectKey=Airfluke_sonarqube"
+                    bat "$sonarScan/bin/sonar-scanner"
                 }
             }
 
