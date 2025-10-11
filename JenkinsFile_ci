@@ -50,13 +50,23 @@ agent any
             }
 
         }
-
+        stage('Dependency Check -Vulenerability Scans ') {
+            steps {
+                dependencyCheck additionalArguments: '''
+                    -o "./"
+                    -s "./"
+                    -f "ALL"
+                    --prettyprint ''' , odcInstallation: "dependency-check"
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
         stage("deploy-to-artifactory"){
             steps{
-                withCredentials([file(credentialsId: 'maven-settings-xml-file', variable: 'setttings-xml')]) {
+                withCredentials([file(credentialsId: 'maven-settings-xml-file', variable: 'settings-xml')]) {
                      withMaven(maven: 'Maven 3.9') {
-                        bat "mvn deploy -s $setttings-xml"
+                        bat "mvn deploy -s $settings-xml"
                      }
+                }
             }
         }
 
