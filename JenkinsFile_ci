@@ -50,16 +50,29 @@ agent any
             }
 
         }
-
-        stage("deploy-to-artifactory"){
-            steps{
-                configFileProvider([configFile(fileId: 'maven-settings-xml', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
-                     withMaven(maven: 'Maven 3.9') {
-                        bat "mvn deploy -s $settings-xml"
-                     }
+        stage('Dependency Check -Vulenerability Scans ') {
+            steps {
+                dependencyCheck additionalArguments: '''
+                    -o "./"
+                    -s "./"
+                    -f "ALL"
+                    --prettyprint ''' , odcInstallation: "dependency-check"
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }
+        stage('Deploy to Artifactory') {
+            steps {
+                configFileProvider([configFile(fileId: 'MySettings', variable: 'MAVEN_SETTINGS')]) {
+                    withMaven(
+                        maven: 'Maven 3.9',
+                        mavenSettingsFilePath: "${MAVEN_SETTINGS}"
+                    ) {
+                        bat "mvn deploy -s ${MAVEN_SETTINGS}"
+                    }
                 }
             }
         }
+
 
 
         }
