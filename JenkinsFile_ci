@@ -53,7 +53,7 @@ agent any
 
         stage("deploy-to-artifactory"){
             steps{
-                withCredentials([file(credentialsId: 'maven-settings-xml-file', variable: 'settings-xml')]) {
+                configFileProvider([configFile(fileId: 'maven-settings-xml', targetLocation: 'mvn_settings_config', variable: 'mvn_settings_config')]) {
                      withMaven(maven: 'Maven 3.9') {
                         bat "mvn deploy -s $settings-xml"
                      }
