@@ -37,7 +37,14 @@ agent any
             }
             steps{
                 withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'Airfluke-Sonarqube') {
-                    bat "$sonarScan/bin/sonar-scanner -Dsonar.projectKey=Airfluke_sonarqube -Dsonar.projectName='Airfluke_sonarqube'"
+                    bat """
+                                "${sonarScan}\\bin\\sonar-scanner.bat" ^
+                                  -Dsonar.projectKey=Airfluke_sonarqube ^
+                                  -Dsonar.projectName=Airfluke_sonarqube ^
+                                  -Dsonar.sources=. ^
+                                  -Dsonar.host.url=http://localhost:9000 ^
+                                  -Dsonar.login=%SONAR_TOKEN%
+                                """
                 }
             }
 
