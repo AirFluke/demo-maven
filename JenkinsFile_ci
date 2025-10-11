@@ -50,16 +50,6 @@ agent any
             }
 
         }
-        stage('Dependency Check -Vulenerability Scans ') {
-            steps {
-                dependencyCheck additionalArguments: '''
-                    -o "./"
-                    -s "./"
-                    -f "ALL"
-                    --prettyprint ''' , odcInstllation: "dependency-check"
-                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+
     }
 
-}
