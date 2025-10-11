@@ -36,8 +36,8 @@ agent any
                 sonarScan = tool "airfluke-scanner"
             }
             steps{
-                withSonarQubeEnv(credentialsId: 'sonar-jenkins', installationName: 'Airfluke-Sonarqube') {
-                    bat "\"${sonarScan}\\bin\\sonar-scanner.bat\" -X
+                withSonarQubeEnv('Airfluke-Sonarqube') {
+                    bat "\"${sonarScan}\\bin\\sonar-scanner.bat\" -X"
                 }
             }
 
