@@ -68,7 +68,7 @@ agent any
             steps{
                 sshPut remote: [
                             name: "ec2",
-                            host: "13.61.34.125",
+                            host: "ec2-13-61-34-125.eu-north-1.compute.amazonaws.com",
                             user: "ubuntu",
                             credentialsId: "aws-ec2-key",
                             allowAnyHosts: true
