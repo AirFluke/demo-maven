@@ -63,6 +63,33 @@ agent any
                 }
             }
         }
+        stage('Deploy to Dev') {
+            steps {
+                configFileProvider([configFile(fileId: 'ec2-dev-key-file', variable: 'PEM_FILE')]) {
+                    sshPut(
+                        remote: [
+                            name: 'dev-server',
+                            host: 'ec2-13-61-34-125.eu-north-1.compute.amazonaws.com',
+                            user: 'ubuntu',
+                            identity: env.PEM_FILE
+                        ],
+                        from: '/target/ibt-maven-1.0-SNAPSHOTS.jar',
+                        into: '/opt/tomcat/apps/'
+                    )
+
+                    sshCommand(
+                        remote: [
+                            name: 'dev-server',
+                            host: 'ec2-13-61-34-125.eu-north-1.compute.amazonaws.com',
+                            user: 'ubuntu',
+                            identity: env.PEM_FILE
+                        ],
+                        command: 'echo "Deployment successful!"'
+                    )
+                }
+            }
+        }
+
         stage('Deploy to Devv') {
             steps {
                 sshPut(
