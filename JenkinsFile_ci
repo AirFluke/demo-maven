@@ -68,7 +68,7 @@ agent any
             steps{
                 script{
                     def remote = [name: "deploy-server", host: "13.61.34.125", allowAnyHosts: true]
-                    withCredentials([usernamePassword(credentialsId: 'server-ssh-pw', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    withCredentials([usernamePassword(credentialsId: 'aws-ec2-key', keyFileVariable: 'aws-ec2-key', passphraseVariable: 'password', usernameVariable: 'username')]) {
                         remote.user = username
                         remote.password = password
                         sshPut remote: remote, from: 'target/ibt-maven-1.0-SNAPSHOTS.jar', into: '/opt/tomcat/apps/'
