@@ -66,19 +66,17 @@ agent any
 
         stage("Deploy to Dev"){
             steps{
-                sshPut remote: [
-                            name: "ec2",
-                            host: "ec2-13-61-34-125.eu-north-1.compute.amazonaws.com",
-                            user: "ubuntu",
-                            credentialsId: "aws-ec2-key",
-                            allowAnyHosts: true
-                        ],
-                        from: 'target/ibt-maven-1.0-SNAPSHOTS.jar',
-                        into: '/opt/tomcat/apps/'
+                sshCommand remote: [
+                    name: 'ec2',
+                    host: 'ec2-13-61-34-125.eu-north-1.compute.amazonaws.com',
+                    user: 'ubuntu',
+                    identity: 'ubuntu-ec2-key',
+                    allowAnyHosts: true
+                ], command: 'echo "SSH works!"'
             }
         }
 
-        }
-
     }
+
+}
 
