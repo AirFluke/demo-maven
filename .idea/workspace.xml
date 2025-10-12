@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a8cabb6-1671-4dc4-82eb-b0d4b98e7b6d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/JenkinsFile_ci" beforeDir="false" afterPath="$PROJECT_DIR$/JenkinsFile_ci" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
