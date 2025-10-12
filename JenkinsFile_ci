@@ -70,7 +70,7 @@ agent any
                             name: "ubuntu",
                             host: "ec2-13-61-34-125.eu-north-1.compute.amazonaws.com",
                             user: "ubuntu",
-                            identity: credentials("aws-ec2-key"),
+                            identity: "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Airfluke\\demo-deploy.pem",
                             allowAnyHosts: true
                         ],
                         from: 'target/ibt-maven-1.0-SNAPSHOTS.jar',
