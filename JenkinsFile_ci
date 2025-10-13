@@ -67,7 +67,7 @@ agent any
 
         stage("Deploy to Dev") {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-keyy', keyFileVariable: 'SSH_KEY')]) {
                 bat """
                 scp -i $SSH_KEY -o StrictHostKeyChecking=no ^
                 target\\ibt-maven-1.0-SNAPSHOTS.jar ^
