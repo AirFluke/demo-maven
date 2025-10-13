@@ -67,13 +67,14 @@ agent any
 
         stage("Deploy to Dev") {
             steps {
-                            withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
-                                bat """
-                                scp -i %SSH_KEY% -o StrictHostKeyChecking=no ^
-                                target\\ibt-maven-1.0-SNAPSHOTS.jar ^
-                                ubuntu@ec2-13-61-34-125.eu-north-1.compute.amazonaws.com:/opt/tomcat/apps/
-                                """
-                            }
+                withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
+                bat """
+                scp -i $SSH_KEY -o StrictHostKeyChecking=no ^
+                target\\ibt-maven-1.0-SNAPSHOTS.jar ^
+                ubuntu@ec2-13-61-34-125.eu-north-1.compute.amazonaws.com:/opt/tomcat/apps/
+                """
+                }
+            }
         }
 
     }
