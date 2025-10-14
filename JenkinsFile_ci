@@ -67,28 +67,13 @@ agent any
 
        stage('Deploy to Dev') {
            steps {
-               withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY')]) {
-                   bat '''
-                   echo Deploying to EC2...
-
-                   rem Copy the key to a safe temporary location
-                   set "TEMP_KEY=%WORKSPACE%\\deploy_key.pem"
-                   copy "%SSH_KEY%" "%TEMP_KEY%"
-
-                   rem Restrict file permissions like chmod 600
-                   icacls "%TEMP_KEY%" /inheritance:r /grant:r "%USERNAME%:R"
-
-                   rem Run scp using the fixed key
-                   scp -i "%TEMP_KEY%" -o StrictHostKeyChecking=no ^
-                   target\\ibt-maven-1.0-SNAPSHOTS.jar ^
-                   ubuntu@ec2-13-61-34-125.eu-north-1.compute.amazonaws.com:/opt/tomcat/apps/
-
-                   rem Clean up the key file
-                   del "%TEMP_KEY%"
-                   '''
+               withCredentials([sshUserPrivateKey(credentialsId: 'aws-ec2-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'USERNAME')]) {
+                   bat """
+                   "C:\\Program Files\\Git\\bin\\bash.exe" -c "chmod 600 ${SSH_KEY} && scp -o StrictHostKeyChecking=no -i ${SSH_KEY} target/ibt-maven-1.0-SNAPSHOTS.jar ${USERNAME}@13.61.34.125:/opt/tomcat/apps/"
+                   """
                }
-           }
        }
+
 
     }
 
